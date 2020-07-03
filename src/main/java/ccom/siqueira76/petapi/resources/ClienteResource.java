@@ -1,6 +1,7 @@
 package ccom.siqueira76.petapi.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -28,6 +29,12 @@ public class ClienteResource {
 
 	@Autowired
 	ClienteService service;
+	
+	@GetMapping
+	public ResponseEntity<?> findAll(){
+		List<Cliente> obj = service.findAll();
+		return ResponseEntity.ok().body(obj);
+	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id){
